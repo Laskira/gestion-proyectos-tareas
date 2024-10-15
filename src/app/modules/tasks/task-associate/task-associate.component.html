@@ -1,0 +1,62 @@
+<!-- Loading Spinner -->
+<div class="d-flex justify-content-center" *ngIf="tasksLoading; else isLoaded">
+  <div>
+    <span>Cargando...</span>
+  </div>
+</div>
+
+<ng-template #isLoaded>
+  <div class="flex justify-center py-6">
+    <h2 class="mb-2 text-2xl font-semibold text-gray-900">
+      Tareas del proyecto {{ projectTitle }}
+    </h2>
+  </div>
+  <div class="flex justify-center py-3">
+    <table
+      class="w-5/6 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Id</th>
+          <th scope="col" class="px-3 py-3">Título</th>
+          <th scope="col" class="px-3 py-3">Estado</th>
+          <th scope="col" class="px-3 py-3">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let task of tasks"
+          class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+        >
+          <td class="px-6 py-4">{{ task.id }}</td>
+          <td
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+          >
+            {{ task.title }}
+          </td>
+          <td class="px-3 py-3">
+            <div *ngIf="task.completed; else inative">
+              <span class="badge badge-light-success fs-8 fw-bold">Activo</span>
+            </div>
+            <ng-template #inative>
+              <span class="badge badge-light-danger fs-8 fw-bold"
+                >Inactivo</span
+              >
+            </ng-template>
+          </td>
+          <td>
+            <button (click)="editTask(task.id)" class="px-3 py-3">
+              <fa-icon [icon]="faPencil"></fa-icon>
+            </button>
+            <button (click)="deleteTask(task.id)" class="px-3 py-3">
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

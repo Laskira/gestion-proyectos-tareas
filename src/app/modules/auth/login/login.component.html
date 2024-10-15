@@ -1,0 +1,93 @@
+<h1 class="text-center font-bold py-2 text-gray-700">Log in</h1>
+<div class="flex justify-center">
+  <form [formGroup]="form" novalidate class="space-y-4" (ngSubmit)="doLogin()">
+    <div>
+      <div class="relative">
+        <label
+          for="email"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Correo</label
+        >
+        <input
+          #nameInput
+          formControlName="email"
+          placeholder="Ingresa tu correo electronico"
+          type="email"
+          class="w-full rounded bg-gray-100 border-gray-300 border-2"
+        />
+        <button
+          type="button"
+          class="p-2 absolute right-2"
+          (click)="nameInput.focus()"
+        >
+          <fa-icon [icon]="faPen"></fa-icon>
+        </button>
+      </div>
+      <div *ngIf="form.controls.email.touched && form.controls.email.invalid">
+        <p
+          *ngIf="form.controls.email.hasError('required')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1"
+        >
+          Este campo es obligatorio
+        </p>
+        <p
+          *ngIf="form.controls.email.hasError('email')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1"
+        >
+          Esto deberia ser un correo electronico
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="relative">
+        <label
+          for="password"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Contraseña</label
+        >
+        <input
+          formControlName="password"
+          placeholder="Enter password"
+          [type]="showPassword ? 'text' : 'password'"
+          class="w-full rounded bg-gray-100 border-gray-300 border-2"
+        />
+        <button
+          type="button"
+          class="p-2 absolute right-2"
+          (click)="showPassword = !showPassword"
+        >
+          <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+        </button>
+      </div>
+      <div
+        *ngIf="form.controls.password.touched && form.controls.password.invalid"
+      >
+        <p
+          *ngIf="form.controls.password.hasError('required')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1"
+        >
+          Este campo es obligatorio
+        </p>
+        <p
+          *ngIf="form.controls.password.hasError('minlength')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1"
+        >
+          Tu contraseña debe de tener más de 6 caracteres
+        </p>
+      </div>
+    </div>
+    <div *ngIf="status === 'failed'">
+      <p class="font-medium text-red-500 text-xs mt-1 ml-1">
+        Credentials are invalid
+      </p>
+    </div>
+    <div>
+      <button
+        class="bg-violet-400 w-full font-medium rounded text-sm px-5 py-2"
+      >
+        <fa-icon class="mr-2"></fa-icon>
+        Login
+      </button>
+    </div>
+  </form>
+</div>

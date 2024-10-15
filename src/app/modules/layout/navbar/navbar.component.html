@@ -1,0 +1,98 @@
+<ng-container>
+  <nav class="bg-violet-500 border-gray-200 px-6 shadow-md">
+    <div class="flex flex-wrap justify-between items-center">
+      <div class="flex items-center">
+        <a routerLink="/app/projects">
+          <img
+            loading="lazy"
+            class="w-12 h-12 mr-8"
+            src="../../../../assets/images/galaxy.png"
+            alt="logo"
+          />
+        </a>
+        <div class="flex items-center">
+          <ul class="flex items-center space-x-2 text-sm font-medium">
+            <li>
+              <a routerLink="/app/projects" class="block py-3 px-4">Proyectos</a>
+            </li>
+            <li>
+              <a routerLink="/app/tasks" class="block py-3 px-4">Tareas</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex items-center">
+        <div class="flex space-x-2">
+          <button
+            type="button"
+            class="flex rounded-full"
+            aria-expanded="false"
+            type="button"
+            (click)="isOpenOverlayAvatar = !isOpenOverlayAvatar"
+            cdkOverlayOrigin
+            #menuOverlay="cdkOverlayOrigin"
+          >
+            <img
+              class="w-8 h-8 rounded-full"
+              src="../../../../assets/images/blank.svg"
+              alt="user photo"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="menuOverlay"
+    [cdkConnectedOverlayOpen]="isOpenOverlayAvatar"
+    (overlayOutsideClick)="isOpenOverlayAvatar = !isOpenOverlayAvatar"
+  >
+    <div
+      class="z-50 my-4 w-60 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
+    >
+      <div class="py-2 px-4 text-center relative">
+        <span class="block text-normal text-gray-900">Mi cuenta</span>
+        <button
+          (click)="isOpenOverlayAvatar = !isOpenOverlayAvatar"
+          class="block text-sm text-gray-900 absolute right-3 top-3"
+        >
+          <fa-icon [icon]="faClose"></fa-icon>
+        </button>
+      </div>
+
+      <ul class="py-1">
+        <li>
+          <button
+            class="block py-2 px-4 text-sm text-gray-700"
+            (click)="logout()"
+          >
+           Cerrar sesión
+          </button>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOpen]="isOpenOverlayBoards"
+    (overlayOutsideClick)="isOpenOverlayBoards = !isOpenOverlayBoards"
+  >
+    <div
+      class="z-50 my-4 w-60 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
+    >
+      <div class="py-2 px-4 text-center relative">
+        <span class="block text-normal text-gray-900">Boards</span>
+        <button
+          (click)="isOpenOverlayBoards = !isOpenOverlayBoards"
+          class="block text-sm text-gray-900 absolute right-3 top-3"
+        >
+          <fa-icon [icon]="faClose"></fa-icon>
+        </button>
+      </div>
+      <div class="py-3 px-4 flex justify-between">Content</div>
+    </div>
+  </ng-template>
+</ng-container>

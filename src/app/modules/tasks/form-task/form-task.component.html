@@ -1,0 +1,76 @@
+<div class="grid justify-center">
+  <h2 class="mb-2 text-2xl font-semibold text-gray-900 py-6">
+    {{ isEditMode ? "Actualiza tu tarea" : "Crea una nueva tarea" }}
+  </h2>
+  <form
+    class="max-w-md mx-auto py-6"
+    [formGroup]="taskForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="relative z-0 w-full mb-5 group">
+      <label
+        for="project"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Selecciona un projecto</label
+      >
+      <select
+        id="project"
+        formControlName="projectId"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
+      >
+        <option selected>Elige un projecto</option>
+        <option value="{{ project.id }}" *ngFor="let project of projects">
+          {{ project?.company.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="relative z-0 w-full mb-5 group">
+      <input
+        type="text"
+        formControlName="title"
+        id="floating_titulo"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-violet-500 focus:outline-none focus:ring-0 focus:border-violet-600 peer"
+        placeholder=" "
+        required
+      />
+      <label
+        for="floating_titulo"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-violet-600 peer-focus:dark:text-violet-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Título</label
+      >
+
+      <div
+        *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched"
+        class="text-sm text-gray-500"
+      >
+        El título es obligatorio.
+      </div>
+    </div>
+
+    <div class="flex items-start mb-5">
+      <div class="flex items-center h-5">
+        <input
+          formControlName="completed"
+          id="completed"
+          type="checkbox"
+          class="w-6 h-6 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-violet-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-violet-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+        />
+      </div>
+      <label
+        for="completed"
+        class="ms-2 font-medium text-gray-900 dark:text-gray-300"
+      >
+        Estado
+      </label>
+    </div>
+
+    <button
+      type="submit"
+      class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 disabled:bg-purple-300"
+      [disabled]="!taskForm.valid"
+    >
+      {{ isEditMode ? "Actualizar" : "Crear" }}
+    </button>
+  </form>
+</div>
