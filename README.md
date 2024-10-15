@@ -1,27 +1,53 @@
-# Proyectos y tareas
+# Gestión de proyectos y tareas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+Aplicación básica de gestión construida con Angular. Permite a los usuarios autenticarse, gestionar proyectos y tareas, así como realizar operaciones básicas sobre los datos obtenidos de una API pública.
 
-## Development server
+## Instalación y Ejecución
+#### Requisitos:
+- Node.js (v14 o superior)
+- npm (Gestor de paquetes)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+#### Paso a Paso
 
-## Code scaffolding
+1. Clonar el repositorio:
+```
+git clone https://github.com/Laskira/gestion-proyectos-tareas.git
+cd gestion-proyectos-tareas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+2. Instalar dependencias:
+```
+npm i
+```
+2. Ejecutar la aplicación:
+```
+ng serve
+```
+Navega a `http://localhost:4200/login`
 
-## Build
+## Rutas y sus caracteristicas
+##### Ingreso a la app
+- `http://localhost:4200/login` 
+    * Usuario:
+        correo: `prueba@gmail.com`
+        contraseña: `12345678`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+#### Módulo de proyectos
+##### Listado de proyectos
+- `http://localhost:4200/app/projects` 
+##### Creación de un proyecto
+- `http://localhost:4200/app/projects/create`
+##### Edición de un proyecto
+- `http://localhost:4200/app/projects/edit/:id` 
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### Módulo de tareas
+##### Listado de todas las tareas existentes
+- `http://localhost:4200/app/tasks
+##### Listado de tareas de un proyecto
+- `http://localhost:4200/app/tasks/:id` 
+Nota: notese que se hace referencia al id de un proyecto
+##### Creación de una tarea
+- `http://localhost:4200/app/tasks/create`
+##### Edición de una tarea
+- `http://localhost:4200/app/tasks/edit/:id` 
+    
