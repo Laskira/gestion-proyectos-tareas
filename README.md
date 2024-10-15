@@ -42,7 +42,7 @@ Navega a `http://localhost:4200/login`
 
 #### Módulo de tareas
 ##### Listado de todas las tareas existentes
-- `http://localhost:4200/app/tasks
+- `http://localhost:4200/app/tasks`
 ##### Listado de tareas de un proyecto
 - `http://localhost:4200/app/tasks/:id` 
 Nota: notese que se hace referencia al id de un proyecto
